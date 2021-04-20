@@ -1,0 +1,3 @@
+.aos-fix[data-aos][data-aos].aos-animate {
+  transform: unset;
+}

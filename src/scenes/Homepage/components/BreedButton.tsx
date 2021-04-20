@@ -1,25 +1,30 @@
 import * as React from "react";
 import Button from "@material-ui/core/Button";
-import DropdownContainer  from "./DropdownContainer";
+import DropdownContainer from "./DropdownContainer";
 import { IBreed } from "./App";
 
 interface IProps {
   item: IBreed;
-  configurePath: (passedBreed: string, passedSubBreed?: string) => void
+  configurePath: (passedBreed: string, passedSubBreed?: string) => void;
 }
 
-const BreedButton: React.FunctionComponent<IProps> = ({item, configurePath}) => {
-  const onButtonClick = () => {
-    if (item.subBreed) {
-      configurePath(item.breed, item.subBreed[0]);
-    } else configurePath(item.breed);
+const BreedButton: React.FunctionComponent<IProps> = ({
+  item,
+  configurePath,
+}) => {
+  const onDropdownBtnClick = (subBreadName: string) => {
+    configurePath(item.breed, subBreadName);
+  };
+
+  const onSimpleBtnClick = () => {
+    configurePath(item.breed);
   };
 
   return (
     <>
       {item.subBreed ? (
         <DropdownContainer
-          onButtonClick={onButtonClick}
+          onButtonClick={onDropdownBtnClick}
           subBreed={item.subBreed}
         >
           {item.breed}
@@ -29,7 +34,7 @@ const BreedButton: React.FunctionComponent<IProps> = ({item, configurePath}) => 
           style={{ margin: "20px" }}
           variant="outlined"
           color="primary"
-          onClick={onButtonClick}
+          onClick={onSimpleBtnClick}
         >
           {item.breed}
         </Button>

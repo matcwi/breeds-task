@@ -4,10 +4,14 @@ import { DropdownContent } from "./DropdownContent";
 interface IProps {
   subBreed: string[];
   children: string;
-  onButtonClick: () => void;
+  onButtonClick: (subBreadName: string) => void;
 }
 
-const DropdownContainer: React.FunctionComponent<IProps> = ({subBreed, children, onButtonClick}) => {
+const DropdownContainer: React.FunctionComponent<IProps> = ({
+  subBreed,
+  children,
+  onButtonClick,
+}) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<any>(null);
   const prevOpen = React.useRef(open);

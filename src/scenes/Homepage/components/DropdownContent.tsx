@@ -12,7 +12,7 @@ interface IProps {
   anchorRef: React.MutableRefObject<any>;
   open: boolean;
   handleToggle: () => void;
-  onButtonClick: () => void;
+  onButtonClick: (subBreadName: string) => void;
   handleClose: (event: any) => void;
   subBreed: string[];
   children: string;
@@ -27,6 +27,10 @@ export const DropdownContent: React.FunctionComponent<IProps> = ({
   children,
   subBreed,
 }) => {
+  const handleMenuItemClick = (subBreedName: string) => {
+    onButtonClick(subBreedName);
+  };
+
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <Button
@@ -47,7 +51,7 @@ export const DropdownContent: React.FunctionComponent<IProps> = ({
         role={undefined}
         transition
         disablePortal
-        style={{ zIndex: 2 }}
+        style={{ zIndex: 4 }}
       >
         {({ TransitionProps, placement }) => (
           <Grow
@@ -61,7 +65,10 @@ export const DropdownContent: React.FunctionComponent<IProps> = ({
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={open} id="menu-list-grow">
                   {subBreed.map((item: any, index: any) => (
-                    <MenuItem key={index} onClick={onButtonClick}>
+                    <MenuItem
+                      key={index}
+                      onClick={() => handleMenuItemClick(item)}
+                    >
                       {item}
                     </MenuItem>
                   ))}
