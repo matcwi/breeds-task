@@ -64,7 +64,7 @@ export const DropdownContent: React.FunctionComponent<IProps> = ({
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={open} id="menu-list-grow">
-                  {subBreed.map((item: any, index: any) => (
+                  {subBreed.map((item: string, index: number) => (
                     <MenuItem
                       key={index}
                       onClick={() => handleMenuItemClick(item)}
