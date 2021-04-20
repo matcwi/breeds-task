@@ -8,26 +8,42 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
-export const DropdownButtonContent: React.FunctionComponent<any> = (
-  props: any
-) => {
+interface IProps {
+  anchorRef: React.MutableRefObject<any>;
+  open: boolean;
+  handleToggle: () => void;
+  onButtonClick: () => void;
+  handleClose: (event: any) => void;
+  subBreed: string[];
+  children: string;
+}
+
+export const DropdownButtonContent: React.FunctionComponent<IProps> = ({
+  anchorRef,
+  open,
+  handleToggle,
+  onButtonClick,
+  handleClose,
+  children,
+  subBreed,
+}) => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <Button
         style={{ margin: "20px" }}
-        ref={props.anchorRef}
-        aria-controls={props.open ? "menu-list-grow" : undefined}
+        ref={anchorRef}
+        aria-controls={open ? "menu-list-grow" : undefined}
         aria-haspopup="true"
-        onClick={props.handleToggle}
+        onClick={handleToggle}
         variant="outlined"
         color="primary"
         endIcon={<ArrowDropDownIcon />}
       >
-        {props.children}
+        {children}
       </Button>
       <Popper
-        open={props.open}
-        anchorEl={props.anchorRef.current}
+        open={open}
+        anchorEl={anchorRef.current}
         role={undefined}
         transition
         disablePortal
@@ -42,10 +58,10 @@ export const DropdownButtonContent: React.FunctionComponent<any> = (
             }}
           >
             <Paper>
-              <ClickAwayListener onClickAway={props.handleClose}>
-                <MenuList autoFocusItem={props.open} id="menu-list-grow">
-                  {props.subBreed.map((item: any, index: any) => (
-                    <MenuItem key={index} onClick={props.fetchRandomImgByBreed}>
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList autoFocusItem={open} id="menu-list-grow">
+                  {subBreed.map((item: any, index: any) => (
+                    <MenuItem key={index} onClick={onButtonClick}>
                       {item}
                     </MenuItem>
                   ))}

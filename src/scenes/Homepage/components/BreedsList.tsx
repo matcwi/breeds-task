@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { BASE_URL } from "../../../constants";
 import { IBreed } from "./App";
-import BreedButton from "./Button";
+import BreedButton from "./BreedButton";
 import { ModalContent } from "./ModalContent";
 
 interface IProps {
@@ -17,7 +17,7 @@ interface IProps {
   isLoading: boolean;
 }
 
-export const BreedsList: FunctionComponent<IProps> = ({
+const BreedsList: FunctionComponent<IProps> = ({
   breeds,
   setIsLoading,
   setError,
@@ -48,7 +48,7 @@ export const BreedsList: FunctionComponent<IProps> = ({
     }
     setOpen(true);
   };
-  
+
   useEffect(() => {
     if (path) sendRequest();
   }, [path, sendRequest]);
@@ -69,3 +69,5 @@ export const BreedsList: FunctionComponent<IProps> = ({
     </>
   );
 };
+
+export default BreedsList;

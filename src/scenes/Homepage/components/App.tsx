@@ -4,7 +4,7 @@ import "react-responsive-modal/styles.css";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { GET_ALL_BREEDS_URL } from "../../../constants";
 
-import { BreedsList } from "./BreedsList";
+import BreedsList from "./BreedsList";
 
 export interface IBreed {
   id: number;
@@ -16,8 +16,9 @@ const App: FunctionComponent = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [breeds, setBreeds] = React.useState<IBreed[]>([]);
   const [error, setError] = React.useState(false);
-
+console.count("app ")
   const loadData = useCallback(async () => {
+
     try {
       const data = await fetch(`${GET_ALL_BREEDS_URL}`).then((res) =>
         res.json()
@@ -38,13 +39,16 @@ const App: FunctionComponent = () => {
         }
         setBreeds(fetchedData);
       }
+
     } catch (e) {
       console.log(e);
       setError(true);
+
     } finally {
       setIsLoading(false);
+
     }
-  }, [setIsLoading, setBreeds]);
+  }, [setIsLoading, setBreeds,setError]);
 
   useEffect(() => {
     loadData();

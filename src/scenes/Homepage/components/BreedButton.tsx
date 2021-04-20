@@ -1,6 +1,6 @@
 import * as React from "react";
 import Button from "@material-ui/core/Button";
-import { DropdownButton } from "./DropdownButton";
+import { DropdownButton } from "./DropdownContainer";
 import { IBreed } from "./App";
 
 interface IProps {
@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const BreedButton: React.FunctionComponent<IProps> = ({item, configurePath}) => {
-  const fetchRandomImgByBreed = () => {
+  const onButtonClick = () => {
     if (item.subBreed) {
       configurePath(item.breed, item.subBreed[0]);
     } else configurePath(item.breed);
@@ -19,7 +19,7 @@ const BreedButton: React.FunctionComponent<IProps> = ({item, configurePath}) => 
     <>
       {item.subBreed ? (
         <DropdownButton
-          fetchRandomImgByBreed={fetchRandomImgByBreed}
+          onButtonClick={onButtonClick}
           subBreed={item.subBreed}
         >
           {item.breed}
@@ -29,7 +29,7 @@ const BreedButton: React.FunctionComponent<IProps> = ({item, configurePath}) => 
           style={{ margin: "20px" }}
           variant="outlined"
           color="primary"
-          onClick={fetchRandomImgByBreed}
+          onClick={onButtonClick}
         >
           {item.breed}
         </Button>

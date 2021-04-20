@@ -1,7 +1,13 @@
 import React from "react";
-import { DropdownButtonContent } from "./DropdownButtonContent";
+import { DropdownButtonContent } from "./DropdownContent";
 
-export const DropdownButton: React.FunctionComponent<any> = (props: any) => {
+interface IProps {
+  subBreed: string[];
+  children: string;
+  onButtonClick: () => void;
+}
+
+export const DropdownButton: React.FunctionComponent<IProps> = ({subBreed, children, onButtonClick}) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<any>(null);
   const prevOpen = React.useRef(open);
@@ -24,10 +30,10 @@ export const DropdownButton: React.FunctionComponent<any> = (props: any) => {
         open={open}
         handleClose={handleClose}
         handleToggle={handleToggle}
-        subBreed={props.subBreed}
-        fetchRandomImgByBreed={props.fetchRandomImgByBreed}
+        subBreed={subBreed}
+        onButtonClick={onButtonClick}
       >
-        {props.children}
+        {children}
       </DropdownButtonContent>
     </div>
   );
