@@ -1,5 +1,5 @@
 import React from "react";
-import { DropdownButtonContent } from "./DropdownContent";
+import { DropdownContent } from "./DropdownContent";
 
 interface IProps {
   subBreed: string[];
@@ -7,7 +7,7 @@ interface IProps {
   onButtonClick: () => void;
 }
 
-export const DropdownButton: React.FunctionComponent<IProps> = ({subBreed, children, onButtonClick}) => {
+const DropdownContainer: React.FunctionComponent<IProps> = ({subBreed, children, onButtonClick}) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<any>(null);
   const prevOpen = React.useRef(open);
@@ -25,7 +25,7 @@ export const DropdownButton: React.FunctionComponent<IProps> = ({subBreed, child
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      <DropdownButtonContent
+      <DropdownContent
         anchorRef={anchorRef}
         open={open}
         handleClose={handleClose}
@@ -34,7 +34,9 @@ export const DropdownButton: React.FunctionComponent<IProps> = ({subBreed, child
         onButtonClick={onButtonClick}
       >
         {children}
-      </DropdownButtonContent>
+      </DropdownContent>
     </div>
   );
 };
+
+export default DropdownContainer;

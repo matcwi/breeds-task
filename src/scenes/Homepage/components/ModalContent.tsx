@@ -1,7 +1,7 @@
 import { Button, CircularProgress } from "@material-ui/core";
-import React, { FunctionComponent, SetStateAction,Dispatch } from "react";
+import React, { FunctionComponent, SetStateAction, Dispatch } from "react";
 import { Modal } from "react-responsive-modal";
-
+import LazyLoad from "react-lazyload";
 interface IProps {
   isModalOpen: boolean;
   modalImage: string;
@@ -31,7 +31,9 @@ export const ModalContent: FunctionComponent<IProps> = ({
         ) : (
           <>
             {modalImage && (
-              <img src={modalImage} width="100%" height="100%" alt="animal" />
+              <LazyLoad  height="400px" once>
+                <img src={modalImage} width="100%" height="100%" alt="animal" />
+              </LazyLoad>
             )}
           </>
         )}

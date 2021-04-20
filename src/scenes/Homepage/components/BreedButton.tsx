@@ -1,6 +1,6 @@
 import * as React from "react";
 import Button from "@material-ui/core/Button";
-import { DropdownButton } from "./DropdownContainer";
+import DropdownContainer  from "./DropdownContainer";
 import { IBreed } from "./App";
 
 interface IProps {
@@ -18,12 +18,12 @@ const BreedButton: React.FunctionComponent<IProps> = ({item, configurePath}) => 
   return (
     <>
       {item.subBreed ? (
-        <DropdownButton
+        <DropdownContainer
           onButtonClick={onButtonClick}
           subBreed={item.subBreed}
         >
           {item.breed}
-        </DropdownButton>
+        </DropdownContainer>
       ) : (
         <Button
           style={{ margin: "20px" }}

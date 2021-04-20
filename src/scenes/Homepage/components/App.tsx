@@ -16,7 +16,7 @@ const App: FunctionComponent = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [breeds, setBreeds] = React.useState<IBreed[]>([]);
   const [error, setError] = React.useState(false);
-console.count("app ")
+  console.count("App ")
   const loadData = useCallback(async () => {
 
     try {

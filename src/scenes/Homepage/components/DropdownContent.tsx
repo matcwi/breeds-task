@@ -18,7 +18,7 @@ interface IProps {
   children: string;
 }
 
-export const DropdownButtonContent: React.FunctionComponent<IProps> = ({
+export const DropdownContent: React.FunctionComponent<IProps> = ({
   anchorRef,
   open,
   handleToggle,
