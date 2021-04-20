@@ -2,7 +2,6 @@
   display: flex;
   justify-content: flex-start;
   flex-flow: row wrap;
-  padding: 50px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
